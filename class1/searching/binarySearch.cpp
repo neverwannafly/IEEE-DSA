@@ -3,9 +3,15 @@
 int main() {
 
     int arraySize;
+    // take array size input
     std::cin >> arraySize;
 
     int array[arraySize];
+
+    // take array input
+    for (int index=0; index<arraySize; index++) {
+        std::cin >> array[index];
+    }
 
     int elementToBeSearched;
     std::cin >> elementToBeSearched;
