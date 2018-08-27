@@ -15,8 +15,9 @@ int main() {
 
     // Printing array before sorting
     for (int i=0; i<arraySize; i++) {
-        std::cout << array[i] << "\n";
+        std::cout << array[i] << " ";
     }
+    std::cout << "\n";
 
     // Proceed to sort array in ascending order
     // TODO: Try sorting the array in descending order
@@ -36,8 +37,9 @@ int main() {
 
     // Printing array after sorting
     for (int i=0; i<arraySize; i++) {
-        std::cout << array[i] << "\n";
+        std::cout << array[i] << " ";
     }
+    std::cout << "\n";
 
     return 0;
 }
