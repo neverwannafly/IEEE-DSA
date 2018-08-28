@@ -1,24 +1,21 @@
 #include <iostream>
 
-int main() {
+void calculateRunTime(long *array, long arraySize, void func(long *, long)) {
+    
+    typedef long long ll;
 
-    int arraySize;
-    // take array size input
-    std::cin >> arraySize;
+    std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
+    start = std::chrono::high_resolution_clock::now();
 
-    int array[arraySize];
+    func(array, arraySize);
 
-    // take array input
-    for (int index=0; index<arraySize; index++) {
-        std::cin >> array[index];
-    }
+    end = std::chrono::high_resolution_clock::now();
+    ll elapsed_time = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
+    std::cout << "Elapsed Time: " << elapsed_time << "ms\n";
 
-    // Printing array before sorting
-    for (int i=0; i<arraySize; i++) {
-        std::cout << array[i] << " ";
-    }
-    std::cout << "\n";
+}
 
+void bubbleSort(long *array, long arraySize) {
     // Proceed to sort array in ascending order
     // TODO: Try sorting the array in descending order
     for (int i=0; i<arraySize; i++) {
@@ -34,12 +31,37 @@ int main() {
 
         }
     }
+}
 
-    // Printing array after sorting
+void printArray(int *array, int arraySize) {
     for (int i=0; i<arraySize; i++) {
         std::cout << array[i] << " ";
     }
     std::cout << "\n";
+}
+
+int main() {
+
+    freopen("input.txt", "r", stdin);
+
+    long arraySize;
+    // take array size input
+    std::cin >> arraySize;
+
+    long array[arraySize];
+
+    // take array input
+    for (long index=0; index<arraySize; index++) {
+        std::cin >> array[index];
+    }
+
+    // Printing array before sorting
+    // printArray(array, arraySize);
+
+    calculateRunTime(array, arraySize, bubbleSort);
+
+    // Printing array after sorting
+    // printArray(array, arraySize);
 
     return 0;
 }

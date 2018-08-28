@@ -1,23 +1,38 @@
 #include <iostream>
 
-// TODO: Implement merge sort to sort an array in descending order
-void mergeLists(int *array, int startIndex, int midIndex, int endIndex) {
-    // Get size of two lists
-    int sizeListA = midIndex - startIndex + 1;
-    int sizeListB = endIndex - midIndex;
-    // Create temporary lists.
-    int listA[sizeListA];
-    int listB[sizeListB];
+void calculateRunTime(long *array, long arraySize, void func(long *, long, long)) {
     
-    for (int i=0; i<sizeListA; i++) {
+    typedef long long ll;
+
+    std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
+    start = std::chrono::high_resolution_clock::now();
+
+    func(array, 0, arraySize-1);
+
+    end = std::chrono::high_resolution_clock::now();
+    ll elapsed_time = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
+    std::cout << "Elapsed Time: " << elapsed_time << "ms\n";
+
+}
+
+// TODO: Implement merge sort to sort an array in descending order
+void mergeLists(long *array, long startIndex, long midIndex, long endIndex) {
+    // Get size of two lists
+    long sizeListA = midIndex - startIndex + 1;
+    long sizeListB = endIndex - midIndex;
+    // Create temporary lists.
+    long listA[sizeListA];
+    long listB[sizeListB];
+    
+    for (long i=0; i<sizeListA; i++) {
         listA[i] = array[startIndex + i];
     }
-    for (int i=0; i<sizeListB; i++) {
+    for (long i=0; i<sizeListB; i++) {
         listB[i] = array[midIndex + 1 + i];
     }
 
-    int arrayCounter = startIndex;
-    int counterListA = 0, counterListB = 0;
+    long arrayCounter = startIndex;
+    long counterListA = 0, counterListB = 0;
 
     while (counterListA < sizeListA && counterListB < sizeListB) {
 
@@ -50,12 +65,12 @@ void mergeLists(int *array, int startIndex, int midIndex, int endIndex) {
 
 }
 
-void mergeSort(int *array, int begin, int end) {
+void mergeSort(long *array, long begin, long end) {
 
     // This algorithm will continue unless we're working with one single
     // element in our subarray.
     if (end > begin) {
-        int mid = (end+begin)/2;
+        long mid = (end+begin)/2;
 
         // Merge sort take advantage of a statergy known as divide and conquer.
         // The main problem is solved by dividing the main problem in subproblems i.e,
@@ -69,33 +84,36 @@ void mergeSort(int *array, int begin, int end) {
     }
 }
 
+void printArray(long *array, long arraySize) {
+    for (long i=0; i<arraySize; i++) {
+        std::cout << array[i] << " ";
+    }
+    std::cout << "\n";
+}
+
 int main() {
 
-    int arraySize;
+    freopen("input.txt", "r", stdin);
+
+    long arraySize;
     // take array size input
     std::cin >> arraySize;
 
-    int array[arraySize];
+    long array[arraySize];
 
     // take array input
-    for (int index=0; index<arraySize; index++) {
+    for (long index=0; index<arraySize; index++) {
         std::cin >> array[index];
     }
 
     // Printing array before sorting
-    for (int i=0; i<arraySize; i++) {
-        std::cout << array[i] << " ";
-    }
-    std::cout << "\n";
+    // printArray(array, arraySize);
 
     // sort array
-    mergeSort(array, 0, arraySize-1);
+    calculateRunTime(array, arraySize, mergeSort);
 
     // Printing array after sorting
-    for (int i=0; i<arraySize; i++) {
-        std::cout << array[i] << " ";
-    }
-    std::cout << "\n";
+    // printArray(array, arraySize);
 
     return 0;
 }
