@@ -1,5 +1,6 @@
 #include <iostream>
 
+// TODO: Implement merge sort to sort an array in descending order
 void mergeLists(int *array, int startIndex, int midIndex, int endIndex) {
     // Get size of two lists
     int sizeListA = midIndex - startIndex + 1;
