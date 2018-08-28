@@ -22,14 +22,14 @@ int main() {
     // Proceed to sort array in ascending order
     // TODO: Try sorting the array in descending order
     for (int i=0; i<arraySize; i++) {
-        for (int j=i; j<arraySize; j++) {
+        for (int j=0; j<arraySize-i-1; j++) {
 
             int temp;
             // temp is a temporary variable to store a value so as in to perform a swap.
-            if (array[i] > array[j]) {
-                temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
+            if (array[j] > array[j+1]) {
+                temp = array[j];
+                array[j] = array[j+1];
+                array[j+1] = temp;
             }
 
         }
