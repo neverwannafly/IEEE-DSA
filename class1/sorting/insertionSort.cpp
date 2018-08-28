@@ -49,3 +49,22 @@ int main() {
 
     return 0;
 }
+
+
+void insertionSort(int *array, int n) {
+
+   int key;
+   int counter;
+
+    for (int i = 1; i < n; i++) {
+        key = array[i];
+        counter = i-1;
+
+        while (counter >= 0 && array[counter] > key) {
+            array[counter+1] = array[counter];
+            counter = counter-1;
+        }
+        array[counter+1] = key;
+    }
+} 
+

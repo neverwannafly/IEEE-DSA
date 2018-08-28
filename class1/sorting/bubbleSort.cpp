@@ -15,10 +15,13 @@ void calculateRunTime(long *array, long arraySize, void func(long *, long)) {
 
 }
 
+// TODO: Can you make the bubble sort more efficient if only
+// some of elements are not in order ? 
+
 void bubbleSort(long *array, long arraySize) {
     // Proceed to sort array in ascending order
     // TODO: Try sorting the array in descending order
-    for (int i=0; i<arraySize; i++) {
+    for (int i=0; i<arraySize-1; i++) {
         for (int j=0; j<arraySize-i-1; j++) {
 
             int temp;
@@ -33,7 +36,7 @@ void bubbleSort(long *array, long arraySize) {
     }
 }
 
-void printArray(int *array, int arraySize) {
+void printArray(long *array, long arraySize) {
     for (int i=0; i<arraySize; i++) {
         std::cout << array[i] << " ";
     }
